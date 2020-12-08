@@ -1,0 +1,46 @@
+header {
+    max-width: 1024px;
+    display: flex;
+    padding: 20px 0;
+    justify-content: space-between;
+
+    .size-container{
+        width: 30%;
+        display: flex;
+        justify-content: space-between;
+
+        input {
+            width: 45%;
+        }
+    }
+
+    .minas {
+        width: 30%;
+    }
+
+    input {
+        border:none;
+        border-bottom: 1px solid white;
+        background: none;
+        font-size: 20px;
+        outline: none;
+        color: white;
+
+        &::placeholder{
+            color: white;
+        }
+    };
+
+    .iniciar {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: green;
+        font-weight: bold;
+        font-size: 20px;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}

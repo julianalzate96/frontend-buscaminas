@@ -29,7 +29,7 @@ function Matriz(props) {
 
           props.validateVictory();
 
-          // props.updateGameScore(result.length * 10);
+          props.updateGameScore(result.length * 10);
 
           break;
         default:

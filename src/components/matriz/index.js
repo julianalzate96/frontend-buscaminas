@@ -27,9 +27,10 @@ function Matriz(props) {
           });
           props.searchMina(result);
 
-          props.updateGameScore(result.length * 10);
-
           props.validateVictory();
+
+          // props.updateGameScore(result.length * 10);
+
           break;
         default:
           alert("ERROR");
@@ -80,17 +81,12 @@ function Matriz(props) {
     }
   };
 
-  const submitScoreAction = () => {
-    submitScore("test", props.game.score)
-    .then(res => console.log("RES: ", res))
-  }
-
   return (
     <div className="matriz">
       {renderMatriz()}
       {props.game.status !== "INIT" && <div className="alert-container">
         {props.game.status === "LOSER" && <h1 className="loser">PERDISTE</h1>}
-        {props.game.status === "WINNER" && <h1 className="winner">GANASTE</h1> && submitScoreAction}
+        {props.game.status === "WINNER" && <h1 className="winner">GANASTE</h1>}
       </div>}
     </div>
   );

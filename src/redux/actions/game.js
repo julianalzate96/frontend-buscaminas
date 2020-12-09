@@ -1,3 +1,5 @@
+import { getScore, submitScore } from "../../service/scoreService";
+
 export const updateGameStatus = (value) => {
   return (dispatch) => {
     dispatch({ type: "UPDATE_GAME_STATUS", value });
@@ -6,7 +8,7 @@ export const updateGameStatus = (value) => {
 
 export const validateVictory = () => {
   return (dispatch, getState) => {
-    const {minas, data} = getState().matriz;
+    const { minas, data } = getState().matriz;
 
     var result = 0;
 
@@ -15,8 +17,13 @@ export const validateVictory = () => {
       result += aux.length;
     });
 
-    if(result === minas){
-      dispatch({ type:"UPDATE_GAME_STATUS", value: "WINNER" })
+    if (result === minas) {
+      dispatch({ type: "UPDATE_GAME_STATUS", value: "WINNER" });
+      submitScore("test", getState().game.score).then(async (res) => {
+        let scores = await getScore();
+
+        console.log(scores);
+      });
     }
   };
 };

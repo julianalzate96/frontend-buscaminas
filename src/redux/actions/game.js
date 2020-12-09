@@ -20,3 +20,9 @@ export const validateVictory = () => {
     }
   };
 };
+
+export const updateGameScore = (value) => {
+  return (dispatch) => {
+    dispatch({ type: "UPDATE_GAME_SCORE", value });
+  };
+};

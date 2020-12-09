@@ -1,0 +1,1 @@
+export const SCORE_SERVICE = "https://score-service.herokuapp.com/";

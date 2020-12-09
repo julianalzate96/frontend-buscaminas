@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 
 import { socket, sendMessage } from "../../config/socket";
 import { searchMina } from "../../redux/actions/matriz";
-import { updateGameStatus, validateVictory } from "../../redux/actions/game";
+import { updateGameStatus, validateVictory, updateGameScore } from "../../redux/actions/game";
 import "./matriz.scss";
+import { submitScore } from "../../service/scoreService";
 
 function Matriz(props) {
   useEffect(() => {
@@ -25,6 +26,8 @@ function Matriz(props) {
             };
           });
           props.searchMina(result);
+
+          props.updateGameScore(result.length * 10);
 
           props.validateVictory();
           break;
@@ -77,12 +80,17 @@ function Matriz(props) {
     }
   };
 
+  const submitScoreAction = () => {
+    submitScore("test", props.game.score)
+    .then(res => console.log("RES: ", res))
+  }
+
   return (
     <div className="matriz">
       {renderMatriz()}
       {props.game.status !== "INIT" && <div className="alert-container">
         {props.game.status === "LOSER" && <h1 className="loser">PERDISTE</h1>}
-        {props.game.status === "WINNER" && <h1 className="winner">GANASTE</h1>}
+        {props.game.status === "WINNER" && <h1 className="winner">GANASTE</h1> && submitScoreAction}
       </div>}
     </div>
   );
@@ -99,4 +107,5 @@ export default connect(mapStateToProps, {
   searchMina,
   updateGameStatus,
   validateVictory,
+  updateGameScore
 })(Matriz);
